@@ -1,0 +1,12 @@
+Array.matrix = function(numRow, numCol, initial){
+    var arr = [];
+    for(var i = 0; i < numRow; i++){
+	var col = [];
+	for (var j= 0; j < numCol; j++){
+	    col[j] = initial;
+	}
+	arr[i] = col;
+    }
+
+    return arr;
+}

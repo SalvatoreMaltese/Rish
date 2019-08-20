@@ -1,0 +1,99 @@
+
+require("./structures.js");
+/*
+Array.matrix = function(numRow, numCol, initial){
+    var arr = [];
+    for(var i = 0; i < numRow; i++){
+	var col = [];
+	for (var j= 0; j < numCol; j++){
+	    col[j] = initial;
+	}
+	arr[i] = col;
+    }
+
+    return arr;
+}
+*/
+function Item(name){
+    this.name = name;
+    this.ingredients = [];
+}
+
+function WarehouseElement(id, element, amount){
+    this.id = id;
+    this.element = element;
+    this.amount = amount;
+}
+
+function Warehouse(){
+
+    this.hashF = function(name, len){
+
+	var hashIndex = 0;
+
+	for(var i = 0 ; i < name.length; i++){
+	    hashIndex = hashIndex + name.charCodeAt(i) + i;  
+	}
+
+	hashIndex = (hashIndex + name.length)  % len ;
+
+	return hashIndex;
+    }
+
+    this.storage = Array.matrix(10, 0, 0);
+}
+
+Warehouse.prototype.AddElement = function(name, amount){
+
+
+    var hashIndex = this.hashF(name, this.storage.length - 1)
+
+    console.log(hashIndex);
+    
+    var welement = new WarehouseElement(hashIndex, name, amount);
+
+    this.storage[hashIndex].push(welement);
+    
+}
+
+
+Warehouse.prototype.SearchByName = function(name){
+    
+    var hashIndex =  this.hashF(name, this.storage.length - 1)
+
+    var result = [];
+    
+    for(var h = 0; h < this.storage[hashIndex].length; h++){
+	
+	if(this.storage[hashIndex][h].element  == name){
+	    result.push(hashIndex);
+	    result.push(h);
+	}
+    }
+    
+    return result; 
+}
+
+
+
+
+var WH = new Warehouse();
+
+console.log(WH);
+
+WH.AddElement("gorgonzola", 10);
+
+console.log(WH);
+
+WH.AddElement("Riso", 100);
+
+console.log(WH);
+
+WH.AddElement("Pane", 20);
+
+console.log(WH);
+
+console.log(WH.SearchByName("Pane"));
+
+
+
