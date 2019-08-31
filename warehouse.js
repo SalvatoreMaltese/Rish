@@ -89,28 +89,29 @@ WH.AddElement("Noci", 100);
 
 
 
-function Product(name, warehouse){
+function Product(name){
     this.name = name;
-    this.wh = warehouse;
     this.ingredients = [];
 }
 
-Product.prototype.addIngredient = function(name, quantity){
-    var item = this.wh.searchByName("name")[0];
+Product.prototype.addIngredient = function(name, wharehouse,  quantity){
+    var item = wharehouse.searchByName(name)[0];
     this.ingredients.push({ingr:item, quantity:quantity});
 }
 
 
-var p1 = new Product("Penne Arrabbiata", WH);
-p1.addIngredient("Penne",  1);
-p1.addIngredient("Sugo",  10);
-p1.addIngredient("Peporoncino",  2);
+var p1 = new Product("Penne Arrabbiata");
+p1.addIngredient("Penne", WH,  1);
+p1.addIngredient("Sugo",  WH, 10);
+p1.addIngredient("Peperoncino", WH, 2);
 
-var p2 = new Product("Risotto noci e gorgonzola", WH);
-p2.addIngredient("Riso", 2);
-p2.addIngredient("Gorgonzola",  4);
-p2.addIngredient("Noci", 5);
-p2.addIngredient("Radicchio", 2);
+
+
+var p2 = new Product("Risotto noci e gorgonzola");
+p2.addIngredient("Riso", WH, 2);
+p2.addIngredient("Gorgonzola", WH, 4);
+p2.addIngredient("Noci", WH, 5);
+p2.addIngredient("Radicchio", WH, 2);
 
 var products = [];
 

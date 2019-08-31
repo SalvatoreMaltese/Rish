@@ -1,5 +1,6 @@
 var express = require("express");
-var WH = require("../warehouse");
+
+var prods = require("../warehouse.js");
 
 var app = express();
 
@@ -17,8 +18,7 @@ app.get("/", function(req, res) {
 
 app.get("/products/list", function(req, res){
 
-    console.log(WH.products);
-    res.json([{ciao:"jj"}]);
+    res.json(prods);
 });
 
 app.listen("8081");
