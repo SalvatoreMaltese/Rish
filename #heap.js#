@@ -1,0 +1,11 @@
+require("./structures.js");
+
+function Heap(slotSize, hashFunc){
+
+    this.hashF = hashFunc;
+    
+    this.storage = Array.matrix(slotSize, 0, 0);
+}
+
+
+Heap.prototype.AddElement
