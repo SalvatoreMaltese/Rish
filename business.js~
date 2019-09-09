@@ -1,0 +1,14 @@
+
+
+function Order(name){
+
+    this.name = name;
+    this.id = 0;
+    this.products = []
+}
+
+
+function OrderFactory(){
+
+}
+

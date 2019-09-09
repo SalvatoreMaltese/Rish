@@ -21,7 +21,6 @@ app.controller("productsController", function($scope, $http){
 					       
 	);
     };
-
     ctrl.selectProduct = function(id_prod){
 
 	var selected = $scope.products.find((elem)=>{

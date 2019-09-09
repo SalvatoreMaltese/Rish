@@ -3,7 +3,7 @@
     <title>Rish - manage your business</title>
 
      <script type="text/javascript" src="/public/angular-1.7.8/angular.js">
-     </script>
+     </script> 
      <script type="text/javascript" src="/application/app.js">  
      </script>
 
@@ -11,27 +11,32 @@
     
   </head>
   <body ng-app="app">
-    <div ng-controller="productsController">
+    <div ng-controller="productsController as pc">
+      <button type="button"
+	      ng-click="pc.startOrder('ciao')">
+	prova
+      </button>
+      
       <div class="container">
 	<div class="row">
 	  <div class="col-sm">
-	    
+	    <ul class="list-group">
+	      <li class="list-group-item" ng-repeat="sp in productSelected">
+		{{sp.times}} -  {{sp.name}} {{sp.total | currency: '&#8364'}}
+	      </li>
+	    </ul>	    
+	    {{total  | currency: '&#8364'}}
 	  </div>
 	  <div class="col-sm">
 	    <button type="button"
-	      ng-repeat="product in products"
-	      class="btn btn-primary btn-lg btn-block">
-	      {{ product.name }}
+		    ng-repeat="product in products"
+		    ng-click="pc.selectProduct(product.name)"
+		    class="btn btn-primary btn-lg btn-block">
+	      {{ product.name }} - {{product.price | currency: '&#8364'}}
 	    </button>
 	  </div>	  
 	</div>  
       </div>
-      
-    <!-- <ul>
-	<li ng-repeat="product in products">
-	  {{ product.name }}
-	</li>
-      </ul> -->
     </div>
 </body>
 </html>

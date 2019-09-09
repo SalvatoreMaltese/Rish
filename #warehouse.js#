@@ -89,10 +89,9 @@ WH.AddElement("Noci", 100);
 
 
 
-function Product(name, price){
+function Product(name){
     this.name = name;
     this.ingredients = [];
-    this.price = price;
 }
 
 Product.prototype.addIngredient = function(name, wharehouse,  quantity){
@@ -101,14 +100,14 @@ Product.prototype.addIngredient = function(name, wharehouse,  quantity){
 }
 
 
-var p1 = new Product("Penne Arrabbiata", 8.50);
+var p1 = new Product("Penne Arrabbiata");
 p1.addIngredient("Penne", WH,  1);
 p1.addIngredient("Sugo",  WH, 10);
 p1.addIngredient("Peperoncino", WH, 2);
 
 
 
-var p2 = new Product("Risotto noci e gorgonzola", 15);
+var p2 = new Product("Risotto noci e gorgonzola");
 p2.addIngredient("Riso", WH, 2);
 p2.addIngredient("Gorgonzola", WH, 4);
 p2.addIngredient("Noci", WH, 5);
