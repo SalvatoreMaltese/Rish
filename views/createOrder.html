@@ -1,0 +1,26 @@
+
+<form>
+  <div class="form-group row">
+
+    <label for="orderName"
+	   class="col-sm-2 col-form-label col-form-label-sm">
+      New Order
+    </label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control"
+	     id="orderName"
+	     placeholder="Enter new order name"
+	     ng-model="name">
+      <small id="orderHelp" class="form-text text-muted">
+	The name of the order will be unique for evrey opened order
+      </small>
+    </div>  
+  </div>
+  <button type="submit"
+	  class="btn btn-primary"
+	  ng-click="create(name)">
+    Start
+  </button>
+</form>
+{{name}}
+{{result}}

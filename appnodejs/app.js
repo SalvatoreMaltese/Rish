@@ -11,10 +11,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 app.use("/public", express.static("public"));
 app.use("/application", express.static("application"));
+app.use("/nm", express.static("node_modules"));
+app.use("/views", express.static("views"));
 
 
 app.get("/", function(req, res) {
     res.render("index");
+});
+
+app.get('/createOrder', function(req, res) {
+     res.render("index");    
 });
 
 app.get("/products/list", function(req, res){
@@ -32,5 +38,17 @@ app.post("/order/set", (req, res) => {
 
     res.json(current_order);
 });
+
+app.post("/order/create", (req, res) => {
+
+    console.log(req.body);
+
+    var id_order = req.body.id;
+
+    var current_order = business.addOrder(id_order);
+
+    res.json(current_order);
+});
+
 
 app.listen("8081");

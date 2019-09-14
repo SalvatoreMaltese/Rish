@@ -2,16 +2,26 @@
   <head>
     <title>Rish - manage your business</title>
 
+     <base href="/" />
+    
      <script type="text/javascript" src="/public/angular-1.7.8/angular.js">
-     </script> 
+     </script>
+     <!-- <script type="text/javascript" src="/nm/angular-route/angular-route.js">
+	  </script> -->
+      <script type="text/javascript" src="/nm/@uirouter/angularjs/release/angular-ui-router.js">
+	  </script>
      <script type="text/javascript" src="/application/app.js">  
      </script>
 
      <link rel="stylesheet" href="/public/bootstrap/css/bootstrap.css">
-    
+
   </head>
   <body ng-app="app">
-    <div ng-controller="productsController as pc">
+   <!-- <a href="createOrder" >proviamo cosi</a> -->
+    
+    <ui-view></ui-view>
+    
+   <!-- <div ng-controller="productsController as pc">
       <button type="button"
 	      ng-click="pc.startOrder('ciao')">
 	prova
@@ -36,6 +46,6 @@
 	  </div>	  
 	</div>  
       </div>
-    </div>
+    </div> -->
 </body>
 </html>

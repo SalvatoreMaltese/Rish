@@ -1,4 +1,39 @@
-var app = angular.module("app", ['ngRoute']);
+var app = angular.module("app", ['ui.router']);
+
+
+app.config(function($stateProvider, $locationProvider){
+
+   $locationProvider.html5Mode(true);
+    
+   var helloState = {
+    name: 'createOrder',
+    url: '/createOrder',
+       // template: '<h3>hello world!</h3>'
+       component: 'createOrder'
+  }
+    
+  $stateProvider.state(helloState);  
+  
+});
+
+app.controller('createOrderController', function($scope, $http){
+    var ctrl = this;
+    
+    $scope.create = function(name){
+
+	console.log(name);
+	
+	$http.post("order/create", {id: name}).then((res) => {
+	    $scope.result = res.data;
+	}, (err) => {console.log(err);});
+	
+    };
+});
+
+app.component('createOrder', {
+    templateUrl:'views/createOrder.html',
+    controller: 'createOrderController'
+});
 
 app.controller("productsController", function($scope, $http){
 
