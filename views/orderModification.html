@@ -1,0 +1,27 @@
+ <!--<div ng-controller="productsController as pc">
+      <button type="button"
+	      ng-click="pc.startOrder('ciao')">
+	prova
+	</button> -->
+<div>
+ <div class="container">
+	<div class="row">
+	  <div class="col-sm">
+	    <ul class="list-group">
+	      <li class="list-group-item" ng-repeat="sp in productSelected">
+		{{sp.times}} -  {{sp.name}} {{sp.total | currency: '&#8364'}}
+	      </li>
+	    </ul>	    
+	    {{total  | currency: '&#8364'}}
+	  </div>
+	  <div class="col-sm">
+	    <button type="button"
+		    ng-repeat="product in products"
+		    ng-click="$ctrl.selectProduct(product.name)"
+		    class="btn btn-primary btn-lg btn-block">
+	      {{ product.name }} - {{product.price | currency: '&#8364'}}
+	    </button>
+	  </div>	  
+	</div>  
+      </div>
+    </div> 

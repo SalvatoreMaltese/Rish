@@ -1,7 +1,15 @@
-var app = angular.module("app", ['ui.router']);
+//var app = angular.module("app", ['ui.router']);
+
+var app = angular.module("app", ['ngComponentRouter']);
 
 
-app.config(function($stateProvider, $locationProvider){
+app.config(function($locationProvider){
+
+   $locationProvider.html5Mode(true);
+            
+});
+
+/* app.config(function($stateProvider, $locationProvider){
 
    $locationProvider.html5Mode(true);
     
@@ -13,29 +21,61 @@ app.config(function($stateProvider, $locationProvider){
   }
     
   $stateProvider.state(helloState);  
-  
+      
+});
+*/
+
+app.value('$routerRootComponent', 'app')
+
+app.component('app',  {
+    template:'<ng-outlet></ng-outlet>',
+    $routeConfig: [	
+	{
+	    path: '/NewOrder/...',
+	    name:'NewOrder',
+	    component: 'createOrder',
+	    useAsDefault: true
+	},
+	{
+	    path: '/OrderModification/:id',
+	    name:'OrderModification',
+	    component: 'orderModification'
+	}
+    ]
 });
 
-app.controller('createOrderController', function($scope, $http){
-    var ctrl = this;
-    
-    $scope.create = function(name){
-
-	console.log(name);
-	
-	$http.post("order/create", {id: name}).then((res) => {
-	    $scope.result = res.data;
-	}, (err) => {console.log(err);});
-	
-    };
-});
-
+//----------------------------------------------------------------------------
 app.component('createOrder', {
     templateUrl:'views/createOrder.html',
+    bindings : { $router: '<' },
     controller: 'createOrderController'
 });
+app.controller('createOrderController', function($scope, $http){
 
-app.controller("productsController", function($scope, $http){
+    var $ctrl = this;
+    
+    $scope.create = function(name){
+	
+	$http.post("order/create", {id: name}).then((res) => {
+	    //$scope.result = res.data;
+	    var id_order = res.data.id;
+	    $ctrl.$router.navigate(['OrderModification', {id: id_order}]);
+	    
+	},(err) => {console.log(err);});
+	
+    };
+    
+});
+
+
+//----------------------------------------------------------------------------
+app.component('orderModification', {
+    templateUrl:'views/orderModification.html',
+    bindings : { $router: '<' },
+    controller: 'orderModificationCtrl'
+});
+
+app.controller("orderModificationCtrl", function($scope, $http){
 
     var ctrl = this;
     $scope.productSelected = [];
@@ -45,7 +85,7 @@ app.controller("productsController", function($scope, $http){
 	$scope.products = res.data
     });
 
-    ctrl.startOrder = function(id_order){
+    /*ctrl.startOrder = function(id_order){
 	console.log(id_order);
 	
 	$http.post("order/set", { id : id_order}).then((res) => {
@@ -55,7 +95,7 @@ app.controller("productsController", function($scope, $http){
 	},(err)=> {console.log(err);}
 					       
 	);
-    };
+    };*/
 
     ctrl.selectProduct = function(id_prod){
 
