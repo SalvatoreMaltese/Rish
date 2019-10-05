@@ -128,6 +128,7 @@
       "resolved": "https://registry.npmjs.org/fresh/-/fresh-0.5.2.tgz",
       "version": "0.5.2"
     },
+    "grunt": "^1.0.4",
     "http-errors": {
       "integrity": "sha512-uUQBt3H/cSIVfch6i1EuPNy/YsRSOUBXTVfZ+yR7Zjez3qjBz6i9+i4zjNaoqcoFVI4lQJ5plg63TvGfRSDCRg==",
       "requires": {
@@ -153,11 +154,14 @@
       "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.3.tgz",
       "version": "2.0.3"
     },
+    "inspect": "0.0.2",
     "ipaddr.js": {
       "integrity": "sha512-M4Sjn6N/+O6/IXSJseKqHoFc+5FdGJ22sXqnjTpdZweHK64MzEPAyQZyEU3R/KRv2GLoa7nNtg/C2Ev6m7z+eA==",
       "resolved": "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-1.9.0.tgz",
       "version": "1.9.0"
     },
+    "jasmine": "^3.5.0",
+    "karma": "^4.3.0",
     "media-typer": {
       "integrity": "sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=",
       "resolved": "https://registry.npmjs.org/media-typer/-/media-typer-0.3.0.tgz",

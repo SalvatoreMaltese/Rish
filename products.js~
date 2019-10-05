@@ -1,0 +1,51 @@
+
+    function Product(name, price){
+	this.name = name;
+	this.ingredients = [];
+	this.price = price;
+    }
+
+
+    Product.prototype.addIngredient = function(name, wharehouse,  quantity){
+	var item = wharehouse.searchByName(name)[0];
+	if(item)
+	this.ingredients.push({ingr:name, quantity:quantity});
+    }
+
+
+function Products(){
+    this.list = [];
+}
+
+Products.prototype.addProduct = function(product){
+
+    if(product instanceof Product)
+	this.list.push(product)
+    else
+	throw "mismatch type";
+}
+
+module.exports = {
+    Product : Product,
+    repository : new Products()
+}
+
+/*var p1 = new Product("Penne Arrabbiata", 8.50);
+p1.addIngredient("Penne", WH,  1);
+p1.addIngredient("Sugo",  WH, 10);
+p1.addIngredient("Peperoncino", WH, 2);
+
+
+
+var p2 = new Product("Risotto noci e gorgonzola", 15);
+p2.addIngredient("Riso", WH, 2);
+p2.addIngredient("Gorgonzola", WH, 4);
+p2.addIngredient("Noci", WH, 5);
+p2.addIngredient("Radicchio", WH, 2);
+
+var products = [];
+
+products.push(p1);
+products.push(p2);
+*/
+

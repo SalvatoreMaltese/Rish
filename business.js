@@ -5,11 +5,32 @@ function Order(name, id){
 
     this.name = name;
     this.id = id;
-    this.products = []
+    this.products = [];
     this.state = 0;
     this.datetime_creation = null;
 }
 
+Order.prototype.addProduct = function(name, quantity){
+   var selected =  this.products.find((elem) =>{
+	return elem.name = name;
+   });
+
+    if(!selected){
+	selected = {
+	    p_name : name,
+	    p_quantity: quantity 
+	};
+    }else{
+	selected.p_quantity = quantity;
+    }
+
+};
+
+Order.prototype.getProduct = function(name){
+    return this.products.find((elem) =>{
+	return elem.name = name;
+   });
+};
 
 function OrderFactory(){
     
@@ -30,13 +51,22 @@ OrderFactory.prototype.addOrder = function(name){
     newOrder.datetime_creation = new Date();
 
     this.orders.push(newOrder);
+  
     return newOrder;
-}
+};
+
+OrderFactory.prototype.getOrder = function(id){
+
+    return this.orders.find((elem) => {
+	return elem.id === id;
+    });
+};
 
 
 OrderFactory.prototype.orderList = function(){
+    
     return this.orders;
-}
+};
 
 module.exports = new OrderFactory();
 
