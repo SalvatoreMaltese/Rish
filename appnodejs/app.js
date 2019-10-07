@@ -4,6 +4,13 @@ var warehouse = require("../warehouse.js");
 var business =  require("../business.js");
 var bodyParser = require("body-parser");
 var products = require("../products");
+const cors = require('cors');
+
+var corsOptions = {
+  origin: 'http://localhost:8012',    
+  optionsSuccessStatus: 200  
+}; 
+
 var app = express();
 
 app.set("view engine", "ejs");
@@ -11,23 +18,15 @@ app.set("views",  "D:/Rish/views");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors(corsOptions));
+
+app.use("/",express.static("application/src/app"));
 app.use("/public", express.static("public"));
 app.use("/application", express.static("application"));
 app.use("/nm", express.static("node_modules"));
 app.use("/views", express.static("views"));
 
 
-app.get("/", function(req, res) {
-
-    res.render("index");
-   
-});
-
-app.get('/createOrder', function(req, res) {
-
-   
-    res.render("index");    
-});
 
 app.get("/products/list", function(req, res){
     

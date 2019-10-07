@@ -1,0 +1,24 @@
+
+angular.module("app")
+
+.component('orderList',{
+    templateUrl:'views/order-list.html',
+    controller: 'orderListCtrl'    
+})
+
+.controller('orderListCtrl', function($scope, $http, $rootScope){
+
+    var $ctrl = this;
+
+    $scope.$parent.$on('oerderschanged', function(evt, data) {
+	    this.$broadcast('oerderschanged', data);
+	});
+    
+    $http.get('order/list').then(function(res){
+
+    });
+
+    $scope.$on('oerderschanged', function(evt, data){
+	$scope.orders = data;
+    });
+});
